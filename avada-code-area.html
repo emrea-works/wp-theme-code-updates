@@ -1,0 +1,52 @@
+<script>
+// Sepet sayfasında yabancı dildeki cümlelerin çevrilmesi
+function translateCartPage(){
+	const query = document.querySelector('.woocommerce-content-box > h2');
+	if (!query) { return; }
+	
+	const textENG = query.textContent;
+	const amount = parseInt(textENG.match(/\d+/)[0]);
+	const textTUR = `Sepette ${amount} ürün var`;
+	query.textContent = textTUR;
+}
+
+
+// Ürün listesi sayfasındaki çeviriler
+function translateProductListsPage(){
+	const query_sortBy = document.querySelector('.orderby.order-dropdown');
+	const query_show = document.querySelector('.sort-count.order-dropdown');
+	if ( !query_sortBy || !query_show ) { return; }
+
+	const words = [
+		{ en: new RegExp('Show', 'g'), tr: '' }, 
+		{ en: 'Products', tr: 'ürün göster' },
+		{ en: 'Sort by', tr: 'Sıralama'},
+	] 
+	
+	function replaceText(node) {
+	    if (node.nodeType === Node.TEXT_NODE) {
+	        node.textContent = node.textContent.replace(
+	          words[0].en, words[0].tr
+	        ).replace(
+	          words[1].en, words[1].tr
+	        ).replace(
+	          words[2].en, words[2].tr
+	        )
+	    } else if (node.nodeType === Node.ELEMENT_NODE) {
+	        for (const childNode of node.childNodes) {
+	            replaceText(childNode);
+	        }
+	    }
+	}
+	
+	replaceText(query_show);
+	replaceText(query_sortBy);
+}
+
+// Sayfa yüklendiyse çalıştır 
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Document loaded');
+	translateCartPage();
+	translateProductListsPage();
+});
+</script>
