@@ -1,0 +1,17 @@
+/* Harici CSS Şeması Başlangıcı -> */
+
+/* 2023.08.23 
+ * Tüm ürün sayfasındaki metinler: koyu renk 
+ * */
+.product_title, 
+.shop_table a.product-title, 
+.woocommerce-container *
+/*.fusion-product-content * */ 
+{
+    color: var(--awb-custom_color_1) !important;
+}
+
+ {
+  color: 
+}
+/* <- Harici CSS Şeması Sonu */ 
