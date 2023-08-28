@@ -11,7 +11,11 @@
     color: var(--awb-custom_color_1) !important;
 }
 
- {
-  color: 
+/*
+ * Tüm Ürün sayfasındaki arkaplan rengi sabit
+ */
+:root {
+    --content_bg_color: unset !important;
 }
+
 /* <- Harici CSS Şeması Sonu */ 
